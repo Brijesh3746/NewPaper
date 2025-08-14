@@ -79,7 +79,9 @@ const { log } = require("util");
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Allow frontend to connect
+app.use(cors({
+    origin: "https://newspaper-alpha-one.vercel.app",
+})); // Allow frontend to connect
 
 app.post("/generate-pdf", async (req, res) => {
     const { baseUrl, totalPages, page4Url } = req.body;
