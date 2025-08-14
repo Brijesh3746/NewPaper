@@ -70,7 +70,8 @@
 
 // before page 4 
 const express = require("express");
-const puppeteer = require("puppeteer");
+const chromium = require("chrome-aws-lambda");
+const puppeteer = require("puppeteer-core"); 
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
@@ -102,9 +103,15 @@ app.post("/generate-pdf", async (req, res) => {
 
         console.log("Image URLs:", imageUrls);
 
+        // const browser = await puppeteer.launch({
+        //     headless: "new",
+        //     args: ["--no-sandbox", "--disable-setuid-sandbox"]
+        // });
         const browser = await puppeteer.launch({
-            headless: "new",
-            args: ["--no-sandbox", "--disable-setuid-sandbox"]
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
         });
 
         const page = await browser.newPage();
