@@ -163,6 +163,9 @@ app.post("/generate-pdf", async (req, res) => {
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get("/", (req, res) => {
+    res.send("Welcome to the PDF Generator API");
+});
 
 
 // after page 4 is added
