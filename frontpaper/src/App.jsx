@@ -18,7 +18,7 @@ function App() {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:4000/generate-pdf", {
+      const response = await fetch("https://new-paper-plum.vercel.app/generate-pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ baseUrl, totalPages,page4Url }),
